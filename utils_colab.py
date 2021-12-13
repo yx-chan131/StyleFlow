@@ -282,7 +282,6 @@ class Build_Colab_model:
             # PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('seed%04d.png' % seed))
         return images
 
-
     def generate_im_from_z_space(self, z, truncation_psi=0.5):
         Gs = self.Gs
 
@@ -295,8 +294,6 @@ class Build_Colab_model:
         images = Gs.run(z, None, **Gs_kwargs)
         # PIL.Image.fromarray(images[0], 'RGB').save(dnnlib.make_run_dir_path('test_from_z.png'))
         return images
-
-
 
     def generate_im_from_w_space(self, w):
 
@@ -314,6 +311,8 @@ def init_deep_model():
         prior.load_state_dict(torch.load('flow_weight/modellarge10k.pt'))
 
         prior.eval()
+        
+        return model, prior, w_avg
         
 # def load_network(random_weights=False):
 #     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'
